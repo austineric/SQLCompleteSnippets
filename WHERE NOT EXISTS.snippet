@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>WHERE NOT EXISTS</Title>
+      <Shortcut>WHERENOTEXISTS</Shortcut>
+      <Description>WHERE NOT EXISTS</Description>
+      <Author>Devart</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[WHERE
+	NOT
+		EXISTS
+			(
+			SELECT *
+			FROM $CARET$
+			WHERE
+			)]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
