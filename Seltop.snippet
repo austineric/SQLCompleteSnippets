@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <CodeSnippets>
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>SelectTop</Title>
-      <Shortcut>selt</Shortcut>
-      <Description>SELECT TOP ? * FROM</Description>
+      <Title>SelectTop10</Title>
+      <Shortcut>sss</Shortcut>
+      <Description>SELECT TOP 10 *</Description>
       <Author>Devart</Author>
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
@@ -24,8 +24,8 @@
           <ID>table_name</ID>
         </Literal>
       </Declarations>
-      <Code Language="SQL (Devart)" Kind="MS SQL"><![CDATA[SELECT TOP $count$ * 
-FROM $schema$.$table_name$]]></Code>
+      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[SELECT TOP 10* 
+FROM $CARET$]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
