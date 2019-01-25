@@ -21,25 +21,36 @@
           <Default>procedure_name</Default>
         </Literal>
       </Declarations>
-      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[IF OBJECT_ID('$schema$.usp_$procedure_name$') IS NOT NULL
-	SET NOEXEC ON
+      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[SET ANSI_NULLS ON
 GO
-CREATE PROCEDURE $schema$.usp_$procedure_name$
-AS RETURN;
+SET QUOTED_IDENTIFIER ON
 GO
-SET NOEXEC OFF
-GO
-ALTER PROCEDURE $schema$.usp_$procedure_name$
-(
-	$CARET$
-)
--- WITH ENCRYPTION, RECOMPILE, EXECUTE AS CALLER|SELF|OWNER| 'user_name'
-AS BEGIN
-	SET NOCOUNT ON;
-
-	RETURN 0;
-END
-GO]]></Code>
+-- =============================================
+-- Author:        Eric Austin
+-- Create date: 
+-- Description:    
+-- =============================================
+CREATE PROCEDURE <ProcName>
+    @paramater INT
+AS
+BEGIN
+ 
+SET NOCOUNT ON;
+SET XACT_ABORT ON;
+ 
+BEGIN TRY
+    BEGIN TRANSACTION
+ 		$CARET$
+    COMMIT TRANSACTION;
+END TRY
+ 
+BEGIN CATCH
+    IF @@trancount>0 ROLLBACK TRANSACTION
+    EXEC dbo.error_handler_sp
+    RETURN 55555
+END CATCH
+ 
+END]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
