@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CreateBackup</Title>
+      <Shortcut>BackupDatabase</Shortcut>
+      <Description />
+      <Author>Devart</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[BACKUP DATABASE RebateEarnings TO DISK = '\\usblmbackfile03\USBLMSQL01\UserDB\RebateEarnings_Eric_$DATE$_$CARET$.bak';
+GO]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
