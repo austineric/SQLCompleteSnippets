@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>ObjectsAndColumns</Title>
+      <Shortcut>ObjectsAndColumns</Shortcut>
+      <Description>Return objects (tables and views) and columns based on column name</Description>
+      <Author>Devart</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[SELECT
+	o.object_id
+	,o.type_desc
+	,o.name AS 'ObjectName'
+	,c.name AS 'ColumName'
+FROM sys.objects o
+JOIN sys.columns c ON (o.object_id=c.object_id)
+WHERE c.name LIKE '%$CARET$%'
+ORDER BY o.name ASC, c.name ASC;]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
