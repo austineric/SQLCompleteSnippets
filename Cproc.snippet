@@ -46,8 +46,8 @@ END TRY
 
 BEGIN CATCH
     IF @@trancount>0 ROLLBACK TRANSACTION;
-    THROW;	
-    RETURN 99;
+    ;THROW;	--see Erland Sommarskog's article http://www.sommarskog.se/error_handling/Part1.html recommending the leading ";"
+    RETURN 99;	--if there is no outer CATCH handler for THROW then execution is aborted, but Erland recommends keeping it in there
 END CATCH
 
 END]]></Code>
