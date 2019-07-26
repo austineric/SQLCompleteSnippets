@@ -46,7 +46,7 @@ END TRY
 
 BEGIN CATCH
     IF @@trancount>0 ROLLBACK TRANSACTION;
-    ;THROW;	--see Erland Sommarskog's article http://www.sommarskog.se/error_handling/Part1.html recommending the leading ";"
+    ;THROW;	--the statement preceeding THROW must terminate with a semicolon so make a habit out of leading with one
     RETURN 99;	--if there is no outer CATCH handler for THROW then execution is aborted, but Erland recommends keeping it in there
 END CATCH
 
