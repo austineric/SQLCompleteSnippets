@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Cursor</Title>
+      <Shortcut>Cursor</Shortcut>
+      <Description />
+      <Author>Devart</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[--declare variables to hold cursor data here
+DECLARE $CARET$
+
+DECLARE @Cursor CURSOR;
+SET @Cursor=CURSOR FOR
+    SELECT
+    FROM
+    WHERE;
+
+OPEN @Cursor;
+FETCH NEXT FROM @Cursor INTO ;
+WHILE @@fetch_status=0
+BEGIN
+
+FETCH NEXT FROM @Cursor INTO ;
+END
+
+CLOSE @Cursor;
+DEALLOCATE @Cursor;]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

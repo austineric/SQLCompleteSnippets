@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CreateTestProcedure_Select</Title>
+      <Shortcut>CreateTestProcedure_Select</Shortcut>
+      <Description />
+      <Author>Devart</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[
+
+CREATE PROCEDURE $CARET$SchemaName.ProcName
+AS BEGIN
+
+    --prepare base table(s)
+    EXEC tSQLt.FakeTable @TableName='dbo.Categories';
+    INSERT INTO dbo.Categories (Category)
+    VALUES ('Category1');
+
+    --prepare expected table
+    SELECT 'Category1' AS 'Category'
+    INTO #Expected
+
+    --prepare actual table
+    SELECT TOP 0*
+    INTO #Actual
+    FROM #Expected;
+
+    --execute proc being tested
+    INSERT INTO #Actual EXEC dbo.Categories_Insert @Category='Category1';
+
+    --fail by default until intentionally updated
+    EXEC tSQLt.Fail;
+
+    --assert
+    EXEC tSQLt.AssertEqualsTable
+        @Expected='#Expected'
+        ,@Actual='#Actual';
+
+END;]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

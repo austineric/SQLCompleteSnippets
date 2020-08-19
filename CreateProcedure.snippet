@@ -4,31 +4,22 @@
     <Header>
       <Title>CreateProcedure</Title>
       <Shortcut>CreateProcedure</Shortcut>
-      <Description>Create a stored procedure.</Description>
+      <Description />
       <Author>Devart</Author>
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
       </SnippetTypes>
     </Header>
     <Snippet>
-      <Declarations>
-        <Literal>
-          <ID>schema</ID>
-          <Default>dbo</Default>
-        </Literal>
-        <Literal>
-          <ID>procedure_name</ID>
-          <Default>procedure_name</Default>
-        </Literal>
-      </Declarations>
+      <Declarations />
       <Code Language="SQL Server" Kind="SQL Server"><![CDATA[SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:			Eric Austin
--- Create date:		$CARET$
--- Description:		
+-- Author:          Eric Austin
+-- Create date:     $CARET$
+-- Description:     
 -- =============================================
 CREATE PROCEDURE <ProcName>
     @paramater INT
