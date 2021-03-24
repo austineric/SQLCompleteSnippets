@@ -14,33 +14,60 @@
       <Declarations />
       <Code Language="SQL Server" Kind="SQL Server"><![CDATA[
 
-CREATE PROCEDURE $CARET$SchemaName.ProcName
+CREATE PROCEDURE Tests.Test_$CARET$
 AS BEGIN
 
-    --prepare base table(s)
-    EXEC tSQLt.FakeTable @TableName='dbo.Categories';
-    INSERT INTO dbo.Categories (Category)
-    VALUES ('Category1');
+    EXEC tSQLt.FakeTable @TableName='dbo.';
 
-    --prepare expected table
-    SELECT 'Category1' AS 'Category'
-    INTO #Expected
+    --ensure that expected results are returned
+        --prepare base table(s)
+        DELETE FROM dbo.;
 
-    --prepare actual table
-    SELECT TOP 0*
-    INTO #Actual
-    FROM #Expected;
+        INSERT INTO dbo.
+            (
 
-    --execute proc being tested
-    INSERT INTO #Actual EXEC dbo.Categories_Insert @Category='Category1';
+            )
+        VALUES
+            (
+            
+            );
 
-    --fail by default until intentionally updated
-    EXEC tSQLt.Fail;
+        --prepare expected table
+        SELECT
+        INTO #Expected;
 
-    --assert
-    EXEC tSQLt.AssertEqualsTable
-        @Expected='#Expected'
-        ,@Actual='#Actual';
+        --prepare actual table
+        SELECT TOP 0*
+        INTO #Actual
+        FROM #Expected;
+
+        --execute proc being tested
+        INSERT INTO #Actual EXEC dbo.;
+
+        --fail by default until intentionally updated
+        EXEC tSQLt.Fail;
+
+        --assert
+        EXEC tSQLt.AssertEqualsTable
+            @Expected='#Expected'
+            ,@Actual='#Actual'
+            ,@FailMsg='Ensure that expected results are returned';
+
+    --ensure that metadata matches
+        --prepare expected table
+        SELECT name
+        INTO #ExpectedMetadata
+        FROM sys.dm_exec_describe_first_result_set('SELECT * FROM #Expected', NULL, 0);
+
+        --prepare actual table
+        SELECT name
+        INTO #ActualMetadata
+        FROM sys.dm_exec_describe_first_result_set('EXEC dbo.', NULL, 0);
+
+        EXEC tSQLt.AssertEqualsTable
+            @Expected='#ExpectedMetadata'
+            ,@Actual='#ActualMetadata'
+            ,@FailMsg='Ensure that metadata matches';
 
 END;]]></Code>
     </Snippet>

@@ -14,30 +14,39 @@
       <Declarations />
       <Code Language="SQL Server" Kind="SQL Server"><![CDATA[
 
-CREATE PROCEDURE $CARET$SchemaName.ProcName
+CREATE PROCEDURE Tests.Test_$CARET$
 AS BEGIN
 
-    --prepare base table(s)
-    EXEC tSQLt.FakeTable @TableName='dbo.Categories';
-    INSERT INTO Categories (Category)
-    VALUES ('Category1');
+    EXEC tSQLt.FakeTable @TableName='dbo.';
 
-    --prepare expected table
-    SELECT 'Category2' AS 'Category'
-    INTO #Expected;
+    --ensure that update succeeds
+        --prepare base table(s)
+        DELETE FROM dbo.;
 
-    --execute proc being tested
-    EXEC dbo.Categories_Update
-        @OldCategory='Category1'
-        ,@NewCategory='Category2';
+        INSERT INTO dbo.
+            (
 
-    --fail by default until intentionally updated
-    EXEC tSQLt.Fail;
+            )
+        VALUES
+            (
+            
+            );
 
-    --assert
-    EXEC tSQLt.AssertEqualsTable
-        @Expected='#Expected'
-        ,@Actual='dbo.Categories';
+        --prepare expected table
+        SELECT
+        INTO #Expected;
+
+        --execute proc being tested
+        EXEC dbo.;
+
+        --fail by default until intentionally updated
+        EXEC tSQLt.Fail;
+
+        --assert
+        EXEC tSQLt.AssertEqualsTable
+            @Expected='#Expected'
+            ,@Actual='dbo.'
+            ,@FailMsg='Ensure that update succeeds';
 
 END;]]></Code>
     </Snippet>

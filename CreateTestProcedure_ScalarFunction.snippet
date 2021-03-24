@@ -2,8 +2,8 @@
 <CodeSnippets>
   <CodeSnippet Format="1.0.0">
     <Header>
-      <Title>CreateTestProcedure_Delete</Title>
-      <Shortcut>CreateTestProcedure_Delete</Shortcut>
+      <Title>CreateTestProcedure_ScalarFunction</Title>
+      <Shortcut>CreateTestProcedure_ScalarFunction</Shortcut>
       <Description />
       <Author>Devart</Author>
       <SnippetTypes>
@@ -17,31 +17,38 @@
 CREATE PROCEDURE Tests.Test_$CARET$
 AS BEGIN
 
+    DECLARE @ExpectedResult BIT;
+    DECLARE @ActualResult BIT;
+
     EXEC tSQLt.FakeTable @TableName='dbo.';
 
-    --ensure that delete succeeds
+    --ensure that function returns the expected value
         --prepare base table(s)
         DELETE FROM dbo.;
-        
+
         INSERT INTO dbo.
             (
-            
+
             )
         VALUES
             (
             
             );
 
-        --execute proc being tested
-        EXEC dbo.;
+        --prepare expected result
+        SET @ExpectedResult=;
+
+        --execute function being tested
+        SELECT @ExpectedResult=dbo.();
 
         --fail by default until intentionally updated
         EXEC tSQLt.Fail;
 
         --assert
-        EXEC tSQLt.AssertEmptyTable
-            @TableName='dbo.'
-            ,@Message='Ensure that delete succeeds';
+        EXEC tSQLt.AssertEquals
+            @Expected=@ExpectedResult
+            ,@Actual=@ActualResult
+            ,@Message='Ensure that function returns the expected value';
 
 END;]]></Code>
     </Snippet>
