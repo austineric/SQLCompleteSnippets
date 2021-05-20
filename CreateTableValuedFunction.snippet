@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets>
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>CreateTableValuedFunction</Title>
+      <Shortcut>CreateTableValuedFunction</Shortcut>
+      <Description />
+      <Author>Devart</Author>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+    </Header>
+    <Snippet>
+      <Declarations />
+      <Code Language="SQL Server" Kind="SQL Server"><![CDATA[SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:          Eric Austin
+-- Create date:     $CARET$
+-- Description:     
+-- =============================================
+CREATE FUNCTION <dbo.FunctionName>
+    (
+    @Parameter Datatype
+    )
+RETURNS TABLE
+AS RETURN
+    SELECT
+    FROM dbo.Table
+    WHERE Column=@Parameter;]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -18,31 +18,18 @@ CREATE PROCEDURE Tests.Test_$CARET$
 AS BEGIN
 
     EXEC tSQLt.FakeTable @TableName='dbo.';
+    EXEC dbo.SetColumnsToNotNull @SchemaAndTable='dbo.';
 
     --ensure that insert succeeds
         --prepare base table(s)
         DELETE FROM dbo.;
 
-        INSERT INTO dbo.
-            (
-
-            )
-        VALUES
-            (
-            
-            );
-
         --prepare expected table
         SELECT
         INTO #Expected;
 
-        --prepare actual table
-        SELECT TOP 0*
-        INTO #Actual
-        FROM #Expected;
-
         --execute proc being tested
-        INSERT INTO #Actual EXEC dbo.;
+        EXEC dbo.;
 
         --fail by default until intentionally updated
         EXEC tSQLt.Fail;
@@ -50,7 +37,7 @@ AS BEGIN
         --assert
         EXEC tSQLt.AssertEqualsTable
             @Expected='#Expected'
-            ,@Actual='#Actual'
+            ,@Actual='dbo.'
             ,@FailMsg='Ensure that insert succeeds';
 
 END;]]></Code>

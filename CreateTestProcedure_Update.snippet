@@ -18,6 +18,7 @@ CREATE PROCEDURE Tests.Test_$CARET$
 AS BEGIN
 
     EXEC tSQLt.FakeTable @TableName='dbo.';
+    EXEC dbo.SetColumnsToNotNull @SchemaAndTable='dbo.';
 
     --ensure that update succeeds
         --prepare base table(s)
